@@ -15,9 +15,13 @@ dataset = pd.read_csv("/Users/nikkibytes/Documents/ML_A-Z/Machine Learning A-Z T
 # Matrix of features (independent)
 X = dataset.iloc[:, :-1].values
 # -- here we said take all lines, then take all columns except the last column
-
-
 # Variable vector (dependent)
 y = dataset.iloc[:, 3].values
 ## --here we take all lines, from column 3 
 
+
+# Taking care of missing data
+from sklearn.preprocessing import Imputer  
+imputer = Imputer(missing_values="NaN", strategy="mean", axis=0)
+imputer = imputer.fit(X[:, 1:3])
+X[:, 1:3] = imputer.transform(X[:, 1:3])
