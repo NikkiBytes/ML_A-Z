@@ -23,4 +23,10 @@ dataset$Country = factor(dataset$Country,
 dataset$Purchased = factor(dataset$Purchased,
                          levels = c('No', 'Yes'), #create vector of 3 elements
                          labels = c(0, 1)) #create labels to encode to 
-                         
+
+# Splitting dataset into the training set and test set
+library(caTools)
+set.seed(123)
+split = sample.split(dataset$Purchased, SplitRatio = 0.8)
+training_set = subset(dataset, split == TRUE) 
+test_set = subset(dataset, split == FALSE) 
